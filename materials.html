@@ -10,13 +10,23 @@
 <header>
   <div class="wrap">
     <div class="topbar">
-      <h1>Materials <span class="badge">track needed/have • quick +1/+5</span></h1>
+      <h1>Materials <span class="badge"></span></h1>
+
       <nav class="noPrint">
         <a class="navlink" href="index.html">Home</a>
         <a class="navlink" href="materials.html">Materials</a>
         <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="locations.html">Locations</a>
         <a class="navlink" href="checklist.html">Raid Checklist</a>
       </nav>
+
+      <!-- NEW: Save UI -->
+      <div class="noPrint" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <span class="badge" id="lastSaved">Last saved: —</span>
+        <button class="tiny" id="saveNowBtn" type="button">Save now</button>
+      </div>
+      <!-- END NEW -->
+
     </div>
   </div>
 </header>
@@ -68,6 +78,11 @@
           </div>
         </div>
 
+        <label class="muted" style="display:flex;gap:10px;align-items:center;margin-top:10px">
+          <input id="pinned" type="checkbox" style="width:auto" />
+          Pin this material (always stays at the top)
+        </label>
+
         <label for="notes">Notes (where it drops / what it crafts)</label>
         <textarea id="notes" placeholder="e.g., Tech buildings; used for gadgets"></textarea>
 
@@ -77,6 +92,7 @@
         </div>
 
         <div class="sep"></div>
+
         <div class="kpi">
           <div class="pill">
             <div class="t">Total materials</div>
@@ -91,6 +107,18 @@
             <div class="v ac" id="kpiMissing">0</div>
           </div>
         </div>
+
+        <div class="sep"></div>
+
+        <div class="inline" style="justify-content:space-between">
+          <div class="muted">Overall progress</div>
+          <div class="muted" id="matProgPct">0%</div>
+        </div>
+        <div class="bar" id="matProgBar" style="margin-top:6px"><div></div></div>
+
+        <div class="sep"></div>
+        <div class="muted" style="margin-bottom:8px">Progress by category</div>
+        <div id="catProgress"></div>
 
         <div class="sep"></div>
 
