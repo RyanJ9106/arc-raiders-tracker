@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Locations – ARC Raiders Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <h1>Locations <span class="badge"></span></h1>
+      <nav class="noPrint">
+        <a class="navlink" href="index.html">Home</a>
+        <a class="navlink" href="materials.html">Materials</a>
+        <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="locations.html">Locations</a>
+        <a class="navlink" href="checklist.html">Raid Checklist</a>
+      </nav>
+
+      <div class="noPrint" style="display:flex;gap:10px;align-items:center">
+        <span class="badge" id="lastSaved">Last saved: —</span>
+        <button class="tiny" id="saveNowBtn" type="button">Save now</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <!-- Left: Add / Edit area -->
+    <section class="card">
+      <div class="hd">
+        <h2 id="locFormTitle">Add location area</h2>
+        <button class="ghost tiny noPrint" id="locResetBtn">Reset</button>
+      </div>
+      <div class="bd">
+        <input type="hidden" id="locEditId" />
+        <label for="locName">Area name</label>
+        <input id="locName" placeholder="e.g., Industrial Zone, Tech Building, Power Facility" />
+
+        <label for="locNotes">Notes</label>
+        <textarea id="locNotes" placeholder="Any reminders: routes, danger, best spawn points..."></textarea>
+
+        <div class="btns noPrint">
+          <button class="primary" id="locSaveBtn">Save area</button>
+          <button class="danger" id="locDeleteBtn" style="display:none;">Delete</button>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="muted">
+          Tip: After you add areas, assign materials on the right. Checklist can show “go here next”.
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: Areas list + assignment -->
+    <section class="card">
+      <div class="hd">
+        <h2>Areas & assignments</h2>
+        <div class="toolbar noPrint">
+          <input id="locSearch" placeholder="Search areas..." />
+        </div>
+      </div>
+      <div class="bd">
+        <div id="locList"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="toast" id="toast">Saved</div>
+<script src="assets/app.js"></script>
+<script>window.ARCT.initLocations();</script>
+</body>
+</html>
