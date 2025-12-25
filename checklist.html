@@ -3,34 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Raid Checklist – ARC Raiders Tracker</title>
+  <title>Raid Checklist – ARC Raiders</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+
 <header>
   <div class="wrap">
     <div class="topbar">
-      <h1>Raid Checklist <span class="badge">printable • grouped • priority-first</span></h1>
+      <h1>
+        Raid Checklist
+        <span class="badge"></span>
+      </h1>
+
       <nav class="noPrint">
         <a class="navlink" href="index.html">Home</a>
         <a class="navlink" href="materials.html">Materials</a>
         <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="locations.html">Locations</a>
         <a class="navlink" href="checklist.html">Raid Checklist</a>
       </nav>
+
+      <div class="noPrint" style="display:flex;gap:10px;align-items:center">
+        <span class="badge" id="lastSaved">Last saved: —</span>
+        <button class="tiny" id="saveNowBtn" type="button">Save now</button>
+      </div>
     </div>
   </div>
 </header>
 
 <main>
-  <div class="grid" style="grid-template-columns: 1fr;">
+  <div class="grid" style="grid-template-columns:1fr">
+
     <section class="card">
       <div class="hd">
         <h2>Summary</h2>
-        <div class="noPrint" style="display:flex;gap:10px;flex-wrap:wrap">
+
+        <div class="noPrint" style="display:flex;gap:10px;align-items:center">
+          <select id="checkView">
+            <option value="category" selected>Group by Category</option>
+            <option value="locations">Group by Locations</option>
+          </select>
           <button class="tiny" id="exportTextBtn">Export .txt</button>
           <button class="tiny primary" id="printBtn">Print</button>
         </div>
       </div>
+
       <div class="bd">
         <div class="kpi">
           <div class="pill">
@@ -38,12 +56,8 @@
             <div class="v ok" id="missingCount">0</div>
           </div>
           <div class="pill">
-            <div class="t">Total missing quantity</div>
+            <div class="t">Total missing</div>
             <div class="v ac" id="missingTotal">0</div>
-          </div>
-          <div class="pill">
-            <div class="t">How to use</div>
-            <div class="muted" style="margin-top:6px">Update “Have” in Materials after raids. This list updates automatically.</div>
           </div>
         </div>
       </div>
@@ -51,17 +65,11 @@
 
     <div id="checklistWrap"></div>
 
-    <section class="card printOnly">
-      <div class="hd"><h2>Notes</h2></div>
-      <div class="bd">
-        <div style="height:140px;border:1px dashed rgba(33,48,67,.7);border-radius:14px"></div>
-      </div>
-    </section>
   </div>
 </main>
 
 <div class="toast" id="toast">Saved</div>
 <script src="assets/app.js"></script>
-<script>window.ARCT.initChecklist();</script>
+<script>ARCT.initChecklist();</script>
 </body>
 </html>
