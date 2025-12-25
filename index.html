@@ -7,19 +7,27 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+
 <header>
   <div class="wrap">
     <div class="topbar">
       <h1>
         ARC Raiders – Tracker
-        <span class="badge">offline • autosave • recipes → needed totals</span>
+        <span class="badge"></span>
       </h1>
+
       <nav class="noPrint">
         <a class="navlink" href="index.html">Home</a>
         <a class="navlink" href="materials.html">Materials</a>
         <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="locations.html">Locations</a>
         <a class="navlink" href="checklist.html">Raid Checklist</a>
       </nav>
+
+      <div class="noPrint" style="display:flex;gap:10px;align-items:center">
+        <span class="badge" id="lastSaved">Last saved: —</span>
+        <button class="tiny" id="saveNowBtn" type="button">Save now</button>
+      </div>
     </div>
   </div>
 </header>
@@ -29,6 +37,7 @@
     <section class="card">
       <div class="hd"><h2>Dashboard</h2></div>
       <div class="bd">
+
         <div class="kpi">
           <div class="pill">
             <div class="t">Materials</div>
@@ -39,8 +48,8 @@
             <div class="v ok" id="homeRecCount">0</div>
           </div>
           <div class="pill">
-            <div class="t">Still missing</div>
-            <div class="v ac" id="homeMissing">0</div>
+            <div class="t">Locations</div>
+            <div class="v ok" id="homeLocCount">0</div>
           </div>
         </div>
 
@@ -48,52 +57,42 @@
 
         <div class="kpi">
           <div class="pill">
-            <div class="t">Total have</div>
+            <div class="t">Have</div>
             <div class="v ok" id="homeHave">0</div>
           </div>
           <div class="pill">
-            <div class="t">Total needed</div>
+            <div class="t">Needed</div>
             <div class="v wn" id="homeNeed">0</div>
           </div>
           <div class="pill">
-            <div class="t">Tip</div>
-            <div class="muted" style="margin-top:6px">
-              Build craft goals in Recipes → apply plans → track pickups in Materials.
-            </div>
+            <div class="t">Missing</div>
+            <div class="v ac" id="homeMissing">0</div>
           </div>
         </div>
 
         <div class="sep"></div>
 
-        <div class="btns">
-          <a class="navlink" href="materials.html">Open Materials</a>
-          <a class="navlink" href="recipes.html">Open Recipes</a>
-          <a class="navlink" href="checklist.html">Open Checklist</a>
+        <div class="inline" style="justify-content:space-between">
+          <div class="muted">Overall progress</div>
+          <div class="muted" id="homeProgPct">0%</div>
         </div>
+        <div class="bar" id="homeProgBar"><div></div></div>
+
       </div>
     </section>
 
     <section class="card">
-      <div class="hd"><h2>Top missing (priority-based)</h2></div>
+      <div class="hd"><h2>Top Missing Materials</h2></div>
       <div class="bd">
         <div id="homeTopMissing"></div>
-
-        <div class="sep"></div>
-
-        <div class="muted">Backup / restore everything (materials + recipes):</div>
-        <div class="btns noPrint">
-          <button class="tiny" id="homeExportJson">Export backup JSON</button>
-          <button class="tiny" id="homeImportJson">Import backup JSON</button>
-          <button class="tiny danger" id="homeWipe">Wipe local data</button>
-        </div>
-        <input id="homeFile" type="file" accept="application/json" style="display:none" />
       </div>
     </section>
   </div>
 </main>
 
 <div class="toast" id="toast">Saved</div>
+
 <script src="assets/app.js"></script>
-<script>window.ARCT.initHome();</script>
+<script>ARCT.initHome();</script>
 </body>
 </html>
