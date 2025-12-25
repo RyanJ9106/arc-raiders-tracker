@@ -10,13 +10,19 @@
 <header>
   <div class="wrap">
     <div class="topbar">
-      <h1>Recipes <span class="badge">plans → auto update “Needed”</span></h1>
+      <h1>Recipes <span class="badge"></span></h1>
       <nav class="noPrint">
         <a class="navlink" href="index.html">Home</a>
         <a class="navlink" href="materials.html">Materials</a>
         <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="locations.html">Locations</a>
         <a class="navlink" href="checklist.html">Raid Checklist</a>
       </nav>
+
+      <div class="noPrint" style="display:flex;gap:10px;align-items:center">
+        <span class="badge" id="lastSaved">Last saved: —</span>
+        <button class="tiny" id="saveNowBtn" type="button">Save now</button>
+      </div>
     </div>
   </div>
 </header>
