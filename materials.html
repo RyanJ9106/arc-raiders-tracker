@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Materials – ARC Raiders Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <h1>Materials <span class="badge">track needed/have • quick +1/+5</span></h1>
+      <nav class="noPrint">
+        <a class="navlink" href="index.html">Home</a>
+        <a class="navlink" href="materials.html">Materials</a>
+        <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="checklist.html">Raid Checklist</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <!-- Left: Add/Edit -->
+    <section class="card">
+      <div class="hd">
+        <h2 id="formTitle">Add material</h2>
+        <button class="ghost tiny noPrint" id="resetBtn">Reset</button>
+      </div>
+      <div class="bd">
+        <input type="hidden" id="editId" value="" />
+
+        <label for="matName">Material name</label>
+        <input id="matName" placeholder="e.g., Scrap, Electronics, Batteries" />
+
+        <div class="row">
+          <div>
+            <label for="category">Category</label>
+            <select id="category">
+              <option>Basic</option><option>Tech</option><option>Mechanical</option>
+              <option>Power</option><option>Utility</option><option>Rare</option>
+            </select>
+          </div>
+          <div>
+            <label for="rarity">Rarity</label>
+            <select id="rarity">
+              <option>Common</option><option>Uncommon</option><option>Rare</option><option>Epic</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row3">
+          <div>
+            <label for="needed">Needed</label>
+            <input id="needed" type="number" min="0" value="0" />
+          </div>
+          <div>
+            <label for="have">Have</label>
+            <input id="have" type="number" min="0" value="0" />
+          </div>
+          <div>
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option>Low</option><option>Medium</option><option selected>High</option><option>Critical</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="notes">Notes (where it drops / what it crafts)</label>
+        <textarea id="notes" placeholder="e.g., Tech buildings; used for gadgets"></textarea>
+
+        <div class="btns noPrint">
+          <button class="primary" id="saveBtn">Save</button>
+          <button class="danger" id="deleteBtn" style="display:none;">Delete</button>
+        </div>
+
+        <div class="sep"></div>
+        <div class="kpi">
+          <div class="pill">
+            <div class="t">Total materials</div>
+            <div class="v ok" id="kpiCount">0</div>
+          </div>
+          <div class="pill">
+            <div class="t">Total needed</div>
+            <div class="v wn" id="kpiNeed">0</div>
+          </div>
+          <div class="pill">
+            <div class="t">Still missing</div>
+            <div class="v ac" id="kpiMissing">0</div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="btns noPrint">
+          <button class="tiny" id="exportJsonBtn">Export JSON</button>
+          <button class="tiny" id="importJsonBtn">Import JSON</button>
+          <button class="tiny" id="exportCsvBtn">Export CSV</button>
+          <button class="tiny danger" id="wipeBtn">Wipe all</button>
+        </div>
+        <input id="fileInput" type="file" accept="application/json" style="display:none" />
+      </div>
+    </section>
+
+    <!-- Right: List -->
+    <section class="card">
+      <div class="hd">
+        <h2>Materials</h2>
+        <div class="toolbar noPrint">
+          <input id="search" placeholder="Search..." />
+          <select id="filterCategory">
+            <option value="All">All categories</option>
+            <option>Basic</option><option>Tech</option><option>Mechanical</option>
+            <option>Power</option><option>Utility</option><option>Rare</option>
+          </select>
+          <select id="sortBy">
+            <option value="priority_desc" selected>Sort: Priority</option>
+            <option value="missing_desc">Sort: Missing</option>
+            <option value="name_asc">Sort: Name</option>
+            <option value="category_asc">Sort: Category</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="bd" style="padding-top:10px">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:24%">Name</th>
+              <th style="width:14%">Category</th>
+              <th style="width:12%">Rarity</th>
+              <th style="width:10%">Needed</th>
+              <th style="width:10%">Have</th>
+              <th style="width:12%">Still need</th>
+              <th style="width:18%">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <p class="muted" id="emptyNote" style="display:none;margin-top:12px">
+          No materials yet. Add your first one on the left.
+        </p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="toast" id="toast">Saved</div>
+<script src="assets/app.js"></script>
+<script>window.ARCT.initMaterials();</script>
+</body>
+</html>

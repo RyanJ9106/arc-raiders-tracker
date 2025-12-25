@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ARC Raiders – Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <h1>
+        ARC Raiders – Tracker
+        <span class="badge">offline • autosave • recipes → needed totals</span>
+      </h1>
+      <nav class="noPrint">
+        <a class="navlink" href="index.html">Home</a>
+        <a class="navlink" href="materials.html">Materials</a>
+        <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="checklist.html">Raid Checklist</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <section class="card">
+      <div class="hd"><h2>Dashboard</h2></div>
+      <div class="bd">
+        <div class="kpi">
+          <div class="pill">
+            <div class="t">Materials</div>
+            <div class="v ok" id="homeMatCount">0</div>
+          </div>
+          <div class="pill">
+            <div class="t">Recipes</div>
+            <div class="v ok" id="homeRecCount">0</div>
+          </div>
+          <div class="pill">
+            <div class="t">Still missing</div>
+            <div class="v ac" id="homeMissing">0</div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="kpi">
+          <div class="pill">
+            <div class="t">Total have</div>
+            <div class="v ok" id="homeHave">0</div>
+          </div>
+          <div class="pill">
+            <div class="t">Total needed</div>
+            <div class="v wn" id="homeNeed">0</div>
+          </div>
+          <div class="pill">
+            <div class="t">Tip</div>
+            <div class="muted" style="margin-top:6px">
+              Build craft goals in Recipes → apply plans → track pickups in Materials.
+            </div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="btns">
+          <a class="navlink" href="materials.html">Open Materials</a>
+          <a class="navlink" href="recipes.html">Open Recipes</a>
+          <a class="navlink" href="checklist.html">Open Checklist</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="hd"><h2>Top missing (priority-based)</h2></div>
+      <div class="bd">
+        <div id="homeTopMissing"></div>
+
+        <div class="sep"></div>
+
+        <div class="muted">Backup / restore everything (materials + recipes):</div>
+        <div class="btns noPrint">
+          <button class="tiny" id="homeExportJson">Export backup JSON</button>
+          <button class="tiny" id="homeImportJson">Import backup JSON</button>
+          <button class="tiny danger" id="homeWipe">Wipe local data</button>
+        </div>
+        <input id="homeFile" type="file" accept="application/json" style="display:none" />
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="toast" id="toast">Saved</div>
+<script src="assets/app.js"></script>
+<script>window.ARCT.initHome();</script>
+</body>
+</html>

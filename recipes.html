@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recipes – ARC Raiders Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <h1>Recipes <span class="badge">plans → auto update “Needed”</span></h1>
+      <nav class="noPrint">
+        <a class="navlink" href="index.html">Home</a>
+        <a class="navlink" href="materials.html">Materials</a>
+        <a class="navlink" href="recipes.html">Recipes</a>
+        <a class="navlink" href="checklist.html">Raid Checklist</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <section class="card">
+      <div class="hd">
+        <h2 id="rFormTitle">Add recipe</h2>
+        <button class="ghost tiny noPrint" id="rResetBtn">Reset</button>
+      </div>
+      <div class="bd">
+        <input type="hidden" id="rEditId" />
+
+        <label for="rName">Recipe name</label>
+        <input id="rName" placeholder="e.g., Medkit, Weapon Mod, Armor Upgrade" />
+
+        <div class="row">
+          <div>
+            <label for="rOutputName">Output item (optional)</label>
+            <input id="rOutputName" placeholder="e.g., Medkit" />
+          </div>
+          <div>
+            <label for="rOutputQty">Output qty (optional)</label>
+            <input id="rOutputQty" type="number" min="1" value="1" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="rPlanQty">Plan crafts (how many times to craft)</label>
+            <input id="rPlanQty" type="number" min="0" value="0" />
+          </div>
+          <div>
+            <label for="planMode">Apply mode</label>
+            <select id="planMode">
+              <option value="add_only" selected>Add on top of current Needed</option>
+              <option value="reset_then_apply">Reset Needed to 0, then apply all plans</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="rInputs">Inputs (one per line: Material:QtyPerCraft)</label>
+        <textarea id="rInputs" placeholder="Scrap:10&#10;Electronics:2&#10;Batteries:1"></textarea>
+
+        <label for="rNotes">Notes</label>
+        <textarea id="rNotes" placeholder="Where you usually craft this / why you want it"></textarea>
+
+        <div class="btns noPrint">
+          <button class="primary" id="rSaveBtn">Save recipe</button>
+          <button class="danger" id="rDeleteBtn" style="display:none;">Delete</button>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="muted">When ready:</div>
+        <div class="btns noPrint">
+          <button class="primary" id="applyPlansBtn">Apply recipe plans → update Materials “Needed”</button>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="btns noPrint">
+          <button class="tiny" id="exportRecipesBtn">Export recipes JSON</button>
+          <button class="tiny" id="importRecipesBtn">Import recipes JSON</button>
+          <button class="tiny danger" id="wipeRecipesBtn">Wipe recipes</button>
+        </div>
+        <input id="recipesFile" type="file" accept="application/json" style="display:none" />
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="hd"><h2>Your recipes</h2></div>
+      <div class="bd">
+        <div id="recipeList"></div>
+        <div class="sep"></div>
+        <div class="muted">
+          Pro tip: Put your long-term craft goals here, set “Plan crafts”, then apply plans.
+          Your Materials page becomes your live “shopping list” in raids.
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="toast" id="toast">Saved</div>
+<script src="assets/app.js"></script>
+<script>window.ARCT.initRecipes();</script>
+</body>
+</html>
